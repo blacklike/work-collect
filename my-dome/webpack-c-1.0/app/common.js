@@ -1,0 +1,1 @@
+import addImage from './addImage'

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],[function(o,n,s){var i=s(1);"string"==typeof i&&(i=[[o.i,i,""]]);var r={hmr:!0,transform:void 0,insertInto:void 0};s(3)(i,r);i.locals&&(o.exports=i.locals)},function(o,n,s){(o.exports=s(2)(!1)).push([o.i,"img{\n  border: 5px solid #000;\n}\n.test{\n  border: 5px solid #000;\n}",""])}]]);

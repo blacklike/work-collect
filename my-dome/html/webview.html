@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>webview</title>
+  <!-- <script type="text/javascript" src="https://appx/web-view.min.js"></script> -->
+  <script>
+    console.log(1);
+    
+    
+    if (navigator.userAgent.indexOf('AlipayClient') > -1) {
+      document.write('<script src="https://appx/web-view.min.js"' + '>' + '<' + '/' + 'script>');
+      console.log(2, my);
+
+      // javascript
+      // my.navigateTo({url: '../todos/todos'});
+      
+      // // 网页向小程序 postMessage 消息
+      // my.postMessage({name:"测试web-view"});
+        
+    }
+  
+    
+    
+    // // 接收来自小程序的消息。
+    // my.onMessage = function(e) {
+    //   console.log(e); //{'sendToWebView': '1'}
+    // }
+    
+    // // 判断是否运行在小程序环境里
+    // my.getEnv(function(res) {
+    //   console.log(res.miniprogram) // true
+    // });
+    
+    // my.startShare();
+  
+  </script>
+</head>
+<body>
+<div>123456</div>
+</body>
+</html>

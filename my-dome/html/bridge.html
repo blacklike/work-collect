@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="yes" name="apple-touch-fullscreen" />
+  <meta content="telephone=no,email=no" name="format-detection" />
+  <script>
+      (function(win,lib){var doc=win.document;var docEl=doc.documentElement;var metaEl=doc.querySelector('meta[name="viewport"]');var flexibleEl=doc.querySelector('meta[name="flexible"]');var dpr=0;var scale=0;var tid;var flexible=lib.flexible||(lib.flexible={});if(metaEl){console.warn("将根据已有的meta标签来设置缩放比例");var match=metaEl.getAttribute("content").match(/initial\-scale=([\d\.]+)/);if(match){scale=parseFloat(match[1]);dpr=parseInt(1/scale)}}else{if(flexibleEl){var content=flexibleEl.getAttribute("content");if(content){var initialDpr=content.match(/initial\-dpr=([\d\.]+)/);var maximumDpr=content.match(/maximum\-dpr=([\d\.]+)/);if(initialDpr){dpr=parseFloat(initialDpr[1]);scale=parseFloat((1/dpr).toFixed(2))}if(maximumDpr){dpr=parseFloat(maximumDpr[1]);scale=parseFloat((1/dpr).toFixed(2))}}}}if(!dpr&&!scale){var isAndroid=win.navigator.appVersion.match(/android/gi);var isIPhone=win.navigator.appVersion.match(/iphone/gi);var devicePixelRatio=win.devicePixelRatio;if(isIPhone){if(devicePixelRatio>=3&&(!dpr||dpr>=3)){dpr=3}else{if(devicePixelRatio>=2&&(!dpr||dpr>=2)){dpr=2}else{dpr=1}}}else{dpr=1}scale=1/dpr}docEl.setAttribute("data-dpr",dpr);if(!metaEl){metaEl=doc.createElement("meta");metaEl.setAttribute("name","viewport");metaEl.setAttribute("content","initial-scale="+scale+", maximum-scale="+scale+", minimum-scale="+scale+", user-scalable=no");if(docEl.firstElementChild){docEl.firstElementChild.appendChild(metaEl)}else{var wrap=doc.createElement("div");wrap.appendChild(metaEl);doc.write(wrap.innerHTML)}}function refreshRem(){var width=docEl.getBoundingClientRect().width;if(width/dpr>540){width=540*dpr}var rem=width/7.5;docEl.style.fontSize=rem+"px";flexible.rem=win.rem=rem}win.addEventListener("resize",function(){clearTimeout(tid);tid=setTimeout(refreshRem,300)},false);win.addEventListener("pageshow",function(e){if(e.persisted){clearTimeout(tid);tid=setTimeout(refreshRem,300)}},false);if(doc.readyState==="complete"){doc.body.style.fontSize=12*dpr+"px"}else{doc.addEventListener("DOMContentLoaded",function(e){doc.body.style.fontSize=12*dpr+"px"},false)}refreshRem();flexible.dpr=win.dpr=dpr;flexible.refreshRem=refreshRem;flexible.rem2px=function(d){var val=parseFloat(d)*this.rem;if(typeof d==="string"&&d.match(/rem$/)){val+="px"}return val};flexible.px2rem=function(d){var val=parseFloat(d)/this.rem;if(typeof d==="string"&&d.match(/px$/)){val+="rem"}return val}})(window,window["lib"]||(window["lib"]={}));
+  </script>
+  <script src="http://cdn.52shangou.com/lib/bridge/2.0.4/build/bridge.debug.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+  <title>bridge测试</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    html, body{
+      width: 100%;
+      height: 100%;
+    }
+    #root{
+      position: relative;
+      height: 100%;
+      color: #333;
+    }
+
+    input, textarea {
+      outline: none;
+      border: none;
+    }
+
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+      color: #ccc;
+    }
+    /* 标题 */
+    h1{
+      text-align: center;
+      padding: .2rem 0;
+    }
+    /* 配置表 */
+    .bridge-config{
+      padding: 0 .4rem;
+    }
+
+    .line {
+      position: relative;
+      padding: .2rem 0;
+    }
+
+    .line::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #efefef;
+      z-index: 10;
+    }
+
+    .line:last-child:after{
+      content: "";
+      height: 0;
+    }
+
+    .label-name{
+      font-size: .30rem;
+      font-weight: 600;
+    }
+
+    .input{
+      border: 1px solid #efefef;
+      height: .5rem;
+      text-indent: .1rem;
+      border-radius: .1rem;
+    }
+
+    .input-large{
+      width: 5.5rem;
+    }
+    .input-small{
+      width: 3rem;
+    }
+    .key-li{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: .2rem 0;
+    }
+
+    .deleteItem{
+      width: .25rem;
+      height: .25rem;
+      border: 1px solid #aaa;
+      color: #aaa;
+      line-height: .26rem;
+      text-align: center;
+      border-radius: 100%;
+    }
+    
+    /* 按钮 */
+    .btn {
+      width: 5rem;
+      height: .7rem;
+      line-height: .7rem;
+      text-align: center;
+      color: #fff;
+      font-size: .3rem;
+      font-weight: 500px;
+      background-color: #0093FF;
+      border-radius: .1rem;
+      margin: auto;
+    }
+    
+    .bridge-setting{
+      margin-top: .3rem;
+    }
+
+
+    /* toast */
+    .toast{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      background-color: rgba(0, 0, 0, .5);
+      color: #fff;
+      padding: .2rem;
+      z-index: 100;
+    }
+    .hidden{
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="root">
+    <div class="toast" :class="{hidden: hidden}">{{toast}}</div>
+    <h1>bridge 测试设置</h1>
+    <div class="bridge-config">
+      <div class="line">
+        <label class="label-name" for="">名称: </label><input class="input input-large" type="text" placeholder="请填写bridge key名称">
+      </div>
+      <div class="line">
+        <h3>参数</h3>
+        <ol class="key-params">
+          <li class="key-li" v-for="(item, index) in keyParams" :key="index">
+            <input v-model="item.key" class="input input-small" type="text" placeholder="请填写参数名称">
+            <input v-model="item.param" class="input input-small" type="text" placeholder="请填写参数值">
+            <span class="deleteItem" @click="deleteItem(index)">X</span>
+          </li>
+        </ol>
+        <div class="btn add-parames" @click="addParams">添加参数</div>
+      </div>
+      <div class="line">
+        <label class="label-name" for="">callbackFn: </label><textarea placeholder="填写callback函数"></textarea>
+      </div>
+    </div>
+    <div class="btn bridge-setting">设置bridge</div>
+  </div>
+</body>
+<script>
+  var root = new Vue({
+    el: '#root',
+    data: {
+      keyParams: [
+        {key:'', param: ''}
+      ],
+      toast: '',
+      hidden: true
+    },
+    methods: {
+      addParams: function () {
+        var _that = this
+        var keyParams = this.keyParams
+        var isAdd = true
+        keyParams.forEach(function(item) {
+          if (!item.key || !item.param) {
+            isAdd = false
+            return 
+          }
+        })
+        if (isAdd) {
+          this.keyParams.push({key:'', param: ''})
+        } else {
+          this.toast = "key跟value值都不能为空"
+          this.hidden = false
+          
+          setTimeout(function() {
+            _that.hidden = true
+          }, 1500)
+        }
+      },
+      deleteItem: function (index) {
+        this.keyParams.splice(index, 1)
+      }
+    }
+  })
+</script>
+</html>
